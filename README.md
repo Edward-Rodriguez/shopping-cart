@@ -2,7 +2,7 @@
 
 Mock Shopping Cart.
 
-**Live Demo:** [`Coming Soon...`]()
+**Live Demo:** `Coming Soon...`
 
 ## Features
 
