@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.leftnav {
+  display: flex;
+  gap: 24px;
+}
+
+.rightnav {
+  display: flex;
+  gap: 24px;
+}
+
+.link {
+  text-decoration: none;
+}
