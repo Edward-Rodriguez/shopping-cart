@@ -4,7 +4,7 @@
   display: grid;
   padding: 12px;
   border-radius: 6px;
-  grid-template-columns: minmax(auto, 150px) 1fr;
+  grid-template-columns: minmax(auto, 220px) 1fr;
   grid-template-rows: auto min-content 48px 1fr 48px;
   grid-template-areas:
     'image title'
@@ -16,13 +16,15 @@
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  column-gap: 12px;
 }
 
 .image {
   grid-area: image;
-  padding: 12px;
-  width: 90%;
+  padding: 24px;
+  width: 100%;
   object-position: 50% 50%;
+  object-fit: cover;
 }
 
 .title {
@@ -45,8 +47,12 @@
 
 .description {
   grid-area: description;
+  display: -webkit-box;
   font-size: 12px;
   font-weight: 400;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
 }
 
 .quantityBtn {
