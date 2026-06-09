@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext(null);
 
@@ -18,7 +18,7 @@ export default function CartProvider({ children }) {
   function increaseQuantity(productId) {
     setCart((prevCart) =>
       prevCart.map((prod) =>
-        prod.id === productId ? (prod.quantity += 1) : prod,
+        prod.id === productId ? { ...prod, quantity: prod.quantity + 1 } : prod,
       ),
     );
   }
@@ -26,13 +26,13 @@ export default function CartProvider({ children }) {
   function decreaseQuantity(productId) {
     setCart((prevCart) =>
       prevCart.map((prod) =>
-        prod.id === productId ? (prod.quantity -= 1) : prod,
+        prod.id === productId ? { ...prod, quantity: prod.quantity - 1 } : prod,
       ),
     );
   }
 
   return (
-    <CartContext
+    <CartContext.Provider
       value={{
         cart,
         addToCart,
@@ -41,6 +41,14 @@ export default function CartProvider({ children }) {
         decreaseQuantity,
       }}>
       {children}
-    </CartContext>
+    </CartContext.Provider>
   );
+}
+
+export function useCart() {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
 }
