@@ -1,7 +1,10 @@
 import { Link } from 'react-router';
 import styles from './NavBar.module.css';
+import { useCart } from '../../context/useCart';
 
 export default function NavBar() {
+  const { getTotalItemCount } = useCart();
+
   return (
     <div className={styles.container}>
       <div className={styles.leftnav}>
@@ -14,7 +17,7 @@ export default function NavBar() {
       </div>
       <div className={styles.rightnav}>
         <Link to='/cart' className={styles.link}>
-          Cart
+          Cart {getTotalItemCount() > 0 && <>({getTotalItemCount()})</>}
         </Link>
       </div>
     </div>

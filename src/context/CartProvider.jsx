@@ -4,8 +4,8 @@ import { CartContext } from './cartContext';
 export default function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  function addToCart(product) {
-    setCart((prevCart) => [...prevCart, product]);
+  function addToCart(productId) {
+    setCart((prevCart) => [...prevCart, { id: productId, quantity: 1 }]);
   }
 
   function removeItem(productIdToRemove) {
@@ -30,6 +30,12 @@ export default function CartProvider({ children }) {
     );
   }
 
+  function getTotalItemCount() {
+    return cart.reduce((total, currentItem) => {
+      return total + currentItem.quantity;
+    }, 0);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -39,6 +45,7 @@ export default function CartProvider({ children }) {
         removeItem,
         increaseQuantity,
         decreaseQuantity,
+        getTotalItemCount,
       }}>
       {children}
     </CartContext.Provider>

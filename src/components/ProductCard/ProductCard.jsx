@@ -3,7 +3,7 @@ import QuantitySelector from '../QuantitySelector/QuantitySelector';
 
 export default function ProductCard({ product }) {
   return (
-    <li key={product.id} className={styles.card}>
+    <li key={product.id} id={product.id} className={styles.card}>
       <img
         className={styles.image}
         src={product.image}
@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
       <div className={styles.category}>{product.category}</div>
       <div className={styles.price}>${product.price}</div>
       <div className={styles.description}>{product.description}</div>
-      <QuantitySelector className={styles.quantityBtn} />
+      <QuantitySelector productId={product.id} className={styles.quantityBtn} />
     </li>
   );
 }
