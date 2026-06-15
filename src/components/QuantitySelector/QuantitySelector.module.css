@@ -1,10 +1,11 @@
 .btnContainer {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   border: 2px solid black;
   border-radius: 4px;
   padding: 6px;
+  align-items: center;
 }
 
 .btnContainer button {
@@ -15,4 +16,9 @@
 
 .addBtn {
   width: 100%;
+}
+
+.itemCount {
+  font-size: 18px;
+  font-weight: 600;
 }

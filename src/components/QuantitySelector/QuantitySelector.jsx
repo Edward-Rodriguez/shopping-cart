@@ -1,8 +1,8 @@
 import { useCart } from '../../context/useCart';
 import styles from './QuantitySelector.module.css';
-import DeleteButton from '../../assets/delete.svg';
-import IncreaseButton from '../../assets/add.svg';
-import DecreaseButton from '../../assets/subtract.svg';
+import DeleteIcon from '../../assets/delete.svg';
+import IncreaseIcon from '../../assets/add.svg';
+import DecreaseIcon from '../../assets/subtract.svg';
 
 export default function QuantitySelector({ productId }) {
   const { cart, addToCart, removeItem, increaseQuantity, decreaseQuantity } =
@@ -19,27 +19,27 @@ export default function QuantitySelector({ productId }) {
         <button
           className={styles.deleteBtn}
           onClick={() => removeItem(productId)}>
-          <img src={DeleteButton} />
+          <img src={DeleteIcon} />
         </button>
       )}
       {quantity > 1 && (
         <button
           className={styles.decreaseBtn}
           onClick={() => decreaseQuantity(productId)}>
-          <img src={DecreaseButton} />
+          <img src={DecreaseIcon} />
         </button>
       )}
-      {isInCart && <>{quantity}</>}
+      {isInCart && <span className={styles.itemCount}>{quantity}</span>}
       {!isInCart && (
         <button className={styles.addBtn} onClick={() => addToCart(productId)}>
-          ADD TO CART
+          <span>ADD TO CART</span>
         </button>
       )}
       {isInCart && (
         <button
           className={styles.increaseBtn}
           onClick={() => increaseQuantity(productId)}>
-          <img src={IncreaseButton} />
+          <img src={IncreaseIcon} />
         </button>
       )}
     </div>

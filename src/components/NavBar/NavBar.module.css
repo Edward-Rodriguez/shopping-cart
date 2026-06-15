@@ -2,6 +2,11 @@
   display: flex;
   justify-content: space-between;
   padding: 16px;
+  position: sticky; /* Tells the browser to stick the element */
+  top: 0; /* Sticks exactly at the top of the viewport */
+  z-index: 1000; /* Keeps the navbar on top of other content */
+  width: 100%;
+  background-color: #ffffff;
 }
 
 .leftnav {
