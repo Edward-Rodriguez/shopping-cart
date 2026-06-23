@@ -2,7 +2,6 @@ import { Outlet } from 'react-router';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import useData from './services/fakeStoreApi';
-import ProductCard from './components/ProductCard/ProductCard';
 
 function App() {
   const { data, loading, error } = useData();
@@ -18,10 +17,7 @@ function App() {
   return (
     <div className='container'>
       <NavBar />
-      <Outlet />
-      <ul className='cardContainer'>
-        {data && data.map((product) => <ProductCard product={product} />)}
-      </ul>
+      <Outlet context={data} />
     </div>
   );
 }
