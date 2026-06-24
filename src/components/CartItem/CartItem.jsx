@@ -15,7 +15,9 @@ export default function CartItem({ product }) {
       />
       <div className={styles.title}>{product.title}</div>
       <div className={styles.category}>{product.category}</div>
-      <QuantitySelector className={styles.quantityBtn} productId={product.id} />
+      <div className={styles.quantityBtn}>
+        <QuantitySelector productId={product.id} />
+      </div>
       <div className={styles.price}>${product.price}</div>
       <button
         className={styles.closeBtn}
