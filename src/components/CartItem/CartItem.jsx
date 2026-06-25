@@ -13,8 +13,10 @@ export default function CartItem({ product }) {
         src={product.image}
         alt={product.description}
       />
-      <div className={styles.title}>{product.title}</div>
-      <div className={styles.category}>{product.category}</div>
+      <div className={styles.titleCategory}>
+        <div className={styles.title}>{product.title}</div>
+        <div className={styles.category}>{product.category}</div>
+      </div>
       <div className={styles.quantityBtn}>
         <QuantitySelector productId={product.id} />
       </div>

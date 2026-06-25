@@ -5,15 +5,16 @@
   padding: 12px;
   border-radius: 6px;
   grid-template-columns: minmax(auto, 100px) repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-areas:
-    'image title quantityBtn price closeBtn'
-    'image category quantityBtn price closeBtn';
-  place-items: center;
+  grid-template-areas: 'image titleCategory quantityBtn price closeBtn';
+  align-items: center;
   box-shadow:
     rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   column-gap: 12px;
+}
+
+.titleCategory {
+  grid-area: titleCategory;
 }
 
 .image {
@@ -26,12 +27,13 @@
 
 .title {
   grid-area: title;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .category {
   grid-area: category;
+  align-self: flex-start;
   font-size: 16px;
   font-weight: 500;
   color: gray;
@@ -39,6 +41,7 @@
 
 .price {
   grid-area: price;
+  justify-self: center;
   font-size: 32px;
   font-weight: 800;
 }
