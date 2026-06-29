@@ -2,6 +2,7 @@ import styles from './CartItem.module.css';
 import QuantitySelector from '../QuantitySelector/QuantitySelector';
 import { useCart } from '../../context/useCart';
 import CloseIcon from '../../assets/close.svg';
+import { ensureTwoDecimalPlaces } from '../../utils/pricing';
 
 export default function CartItem({ product }) {
   const { removeItem } = useCart();
@@ -20,7 +21,9 @@ export default function CartItem({ product }) {
       <div className={styles.quantityBtn}>
         <QuantitySelector productId={product.id} />
       </div>
-      <div className={styles.price}>${product.price}</div>
+      <div className={styles.price}>
+        ${ensureTwoDecimalPlaces(product.price)}
+      </div>
       <button
         className={styles.closeBtn}
         onClick={() => removeItem(product.id)}>
