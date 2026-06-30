@@ -29,7 +29,6 @@ export default function OrderSummary({ priceBreakdown }) {
           {ensureTwoDecimalPlaces(discount)}
         </div>
       </div>
-      <br />
       <div className={styles.total}>
         <div>Total</div>
         <div className={styles.amount}>${total}</div>

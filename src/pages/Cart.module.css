@@ -1,7 +1,25 @@
-.cartListContainer {
-  padding: 8px;
-  margin: 8px;
-  gap: 12px;
-  border: 2px solid rgb(223, 223, 223);
-  border-radius: 6px;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'heading heading'
+    'cartlist ordersummary';
+  padding: 48px;
+  gap: 16px;
+}
+
+.title {
+  grid-area: heading;
+  height: min-content;
+  font-size: 32px;
+}
+
+.summary {
+  grid-area: ordersummary;
+}
+
+.list {
+  grid-area: cartlist;
+  padding: 24px;
 }

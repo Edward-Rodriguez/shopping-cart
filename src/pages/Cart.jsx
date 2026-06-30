@@ -28,14 +28,10 @@ export default function Cart() {
   }
 
   return (
-    <div>
-      <h1>My Shopping Cart</h1>
-      <ul className={styles.cartListContainer}>
-        {cart.map((item) => (
-          <CartItem product={productList.find((prod) => prod.id === item.id)} />
-        ))}
-      </ul>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Shopping Cart</h1>
       <OrderSummary
+        className={styles.summary}
         priceBreakdown={{
           subtotal: getSubtotal(),
           shipping: computeShipping(),
@@ -43,6 +39,11 @@ export default function Cart() {
           discount: 0,
         }}
       />
+      <ul className={styles.list}>
+        {cart.map((item) => (
+          <CartItem product={productList.find((prod) => prod.id === item.id)} />
+        ))}
+      </ul>
     </div>
   );
 }
