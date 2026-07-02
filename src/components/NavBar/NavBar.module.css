@@ -1,12 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 .container {
   display: flex;
   justify-content: space-between;
-  padding: 16px;
+  padding: 16px 48px;
   position: sticky; /* Tells the browser to stick the element */
   top: 0; /* Sticks exactly at the top of the viewport */
   z-index: 1000; /* Keeps the navbar on top of other content */
   width: 100%;
-  background-color: #ffffff;
+  background-color: #f1efe9;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  align-items: center;
 }
 
 .leftnav {
@@ -21,4 +32,9 @@
 
 .link {
   text-decoration: none;
+}
+
+.link:visited,
+.link:active {
+  color: black;
 }
