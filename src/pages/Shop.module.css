@@ -1,0 +1,11 @@
+.shopContainer {
+  margin-top: 48px;
+  max-width: 1440px;
+}
+
+.productCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
