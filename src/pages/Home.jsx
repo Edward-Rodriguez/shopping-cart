@@ -13,6 +13,7 @@ export default function Home() {
                   ${baseImageUrl}w_800${imageId} 800w,
                   ${baseImageUrl}w_1200${imageId} 1200w,
                   ${baseImageUrl}w_1600${imageId} 1600w,
+                  ${baseImageUrl}w_2400${imageId} 2400w,
                   `}
         sizes='100vw'
         alt='Brown beach umbrella on white sand beside turquoise water.'
