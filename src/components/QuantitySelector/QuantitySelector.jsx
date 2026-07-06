@@ -3,6 +3,7 @@ import styles from './QuantitySelector.module.css';
 import DeleteIcon from '../../assets/delete.svg';
 import IncreaseIcon from '../../assets/add.svg';
 import DecreaseIcon from '../../assets/subtract.svg';
+import { useState } from 'react';
 
 export default function QuantitySelector({ productId }) {
   const { cart, addToCart, removeItem, increaseQuantity, decreaseQuantity } =
@@ -12,13 +13,19 @@ export default function QuantitySelector({ productId }) {
   const quantity = product ? product.quantity : 0;
   const isInCart = quantity > 0;
   const showDeleteButton = quantity === 1;
+  const [active, setActive] = useState(isInCart);
 
   return (
-    <div className={styles.btnContainer}>
+    <div
+      className={
+        active ? styles.active + ' ' + styles.btnContainer : styles.btnContainer
+      }>
       {showDeleteButton && (
         <button
           className={styles.deleteBtn}
-          onClick={() => removeItem(productId)}>
+          onClick={() => {
+            (removeItem(productId), setActive(false));
+          }}>
           <img src={DeleteIcon} />
         </button>
       )}
@@ -31,7 +38,11 @@ export default function QuantitySelector({ productId }) {
       )}
       {isInCart && <span className={styles.itemCount}>{quantity}</span>}
       {!isInCart && (
-        <button className={styles.addBtn} onClick={() => addToCart(productId)}>
+        <button
+          className={styles.addBtn}
+          onClick={() => {
+            (addToCart(productId), setActive(true));
+          }}>
           <span>ADD TO CART</span>
         </button>
       )}

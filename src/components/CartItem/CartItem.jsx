@@ -19,7 +19,7 @@ export default function CartItem({ product }) {
         <div className={styles.category}>{product.category}</div>
       </div>
       <div className={styles.quantityBtn}>
-        <QuantitySelector productId={product.id} />
+        <QuantitySelector productId={product.id} isActive={true} />
       </div>
       <div className={styles.price}>
         ${ensureTwoDecimalPlaces(product.price)}

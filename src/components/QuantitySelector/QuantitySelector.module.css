@@ -2,16 +2,37 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  border: 2px solid black;
-  border-radius: 6px;
-  padding: 6px;
+  border: 2px solid #ffce12;
+  border-radius: 12px;
   align-items: center;
+  height: 36px;
+  background-color: #ffce12;
+  padding: 0px 4px;
 }
 
 .btnContainer button {
+  border-radius: 12px;
+  height: 100%;
   background: none;
   border: none;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.active {
+  border-color: #f8bd19;
+  background-color: #fff;
+}
+
+.btnContainer:not(.active):hover {
+  background-color: #f8bd19;
+  border-color: #f8bd19;
+}
+
+.btnContainer img {
+  width: 100%;
+  height: auto;
 }
 
 .addBtn {
@@ -19,6 +40,6 @@
 }
 
 .itemCount {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
