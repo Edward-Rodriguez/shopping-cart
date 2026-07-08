@@ -38,3 +38,9 @@
 .link:active {
   color: black;
 }
+
+@media (max-width: 1040px) {
+  .container {
+    padding: 16px 6px;
+  }
+}

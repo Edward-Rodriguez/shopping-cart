@@ -20,6 +20,7 @@
 }
 
 .image {
+  min-width: 50px;
   grid-area: image;
   padding: 24px;
   width: 100%;
@@ -65,4 +66,28 @@
 
 .closeBtn:hover {
   scale: 1.2;
+}
+
+@media (max-width: 1040px) {
+  .image {
+    padding: 12px;
+    min-width: 50px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .card {
+    grid-template-columns:
+      minmax(50px, 100px) minmax(auto, 200px)
+      minmax(auto, 100px) min-content 1fr;
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      'image titleCategory titleCategory titleCategory titleCategory'
+      'image quantityBtn price closeBtn .';
+    align-items: center;
+    column-gap: 12px;
+    justify-content: flex-start;
+  }
 }

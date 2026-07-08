@@ -28,4 +28,21 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 0px 16px;
+  background-color: #fff;
+}
+
+@media (max-width: 1040px) {
+  .container {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+      'heading heading'
+      'ordersummary ordersummary'
+      'cartlist cartlist';
+    padding: 6px;
+    row-gap: 12px;
+    column-gap: 0px;
+    justify-content: center;
+  }
 }
