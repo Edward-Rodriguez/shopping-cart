@@ -87,7 +87,7 @@
       'image titleCategory titleCategory titleCategory titleCategory'
       'image quantityBtn price closeBtn .';
     align-items: center;
-    column-gap: 12px;
+    column-gap: 18px;
     justify-content: flex-start;
   }
 }
