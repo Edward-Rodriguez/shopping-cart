@@ -23,6 +23,7 @@ export default function QuantitySelector({ productId }) {
       {showDeleteButton && (
         <button
           className={styles.deleteBtn}
+          aria-label='Remove item'
           onClick={() => {
             (removeItem(productId), setActive(false));
           }}>
@@ -32,6 +33,7 @@ export default function QuantitySelector({ productId }) {
       {quantity > 1 && (
         <button
           className={styles.decreaseBtn}
+          aria-label='Decrement quantity'
           onClick={() => decreaseQuantity(productId)}>
           <img src={DecreaseIcon} />
         </button>
@@ -40,6 +42,7 @@ export default function QuantitySelector({ productId }) {
       {!isInCart && (
         <button
           className={styles.addBtn}
+          aria-label='Add to cart'
           onClick={() => {
             (addToCart(productId), setActive(true));
           }}>
@@ -49,6 +52,7 @@ export default function QuantitySelector({ productId }) {
       {isInCart && (
         <button
           className={styles.increaseBtn}
+          aria-label='Increment quantity'
           onClick={() => increaseQuantity(productId)}>
           <img src={IncreaseIcon} />
         </button>
