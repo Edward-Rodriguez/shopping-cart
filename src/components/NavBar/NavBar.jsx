@@ -17,7 +17,7 @@ export default function NavBar() {
       </div>
       <div className={styles.rightnav}>
         <Link to='/cart' className={styles.link}>
-          Cart {getTotalItemCount() > 0 && <>({getTotalItemCount()})</>}
+          Cart ({getTotalItemCount() > 0 ? <>{getTotalItemCount()}</> : 0})
         </Link>
       </div>
     </div>

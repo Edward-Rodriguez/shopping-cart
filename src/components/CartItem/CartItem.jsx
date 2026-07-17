@@ -26,6 +26,7 @@ export default function CartItem({ product }) {
       </div>
       <button
         className={styles.closeBtn}
+        aria-label='Remove all items'
         onClick={() => removeItem(product.id)}>
         <img src={CloseIcon} />
       </button>

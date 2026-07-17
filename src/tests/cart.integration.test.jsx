@@ -25,7 +25,6 @@ describe('Cart Integration', () => {
       });
       await user.click(addToCartButton);
     }
-    console.log('cart text = ' + cartLink.textContent);
     expect(cartLink.textContent).toMatch(/.*20.*$/i);
   });
 
@@ -42,7 +41,6 @@ describe('Cart Integration', () => {
       name: /increment quantity/i,
     });
     await user.click(incrementBtn);
-    console.log('cart text = ' + cartLink.textContent);
     expect(cartLink.textContent).toMatch(/\(2\)$/i);
 
     const decreaseQtyBtn = within(productOne).getByRole('button', {
@@ -50,7 +48,34 @@ describe('Cart Integration', () => {
     });
 
     await user.click(decreaseQtyBtn);
-    console.log('cart text = ' + cartLink.textContent);
     expect(cartLink.textContent).toMatch(/\(1\)$/i);
+  });
+
+  it('removes item and decreases car qty count after clicking remove in the cart list, no matter the qty.', async () => {
+    const productOne = productCards[0];
+    const addToCartBtn = within(productOne).getByRole('button', {
+      name: /add to cart/i,
+    });
+    await user.click(addToCartBtn);
+
+    const incrementBtn = within(productOne).getByRole('button', {
+      name: /increment quantity/i,
+    });
+    await user.click(incrementBtn);
+    await user.click(incrementBtn);
+    await user.click(cartLink);
+
+    const cartList = screen.getByRole('list', {
+      name: /cart list/i,
+    });
+
+    const removeAllItemsBtn = screen.getByRole('button', {
+      name: /remove all items/i,
+    });
+    await user.click(removeAllItemsBtn);
+
+    console.log('cart text = ' + cartLink.textContent);
+    expect(cartLink.textContent).toMatch(/\(0\)$/i);
+    expect(cartList.children.length).toEqual(0);
   });
 });

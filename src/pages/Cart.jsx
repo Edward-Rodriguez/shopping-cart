@@ -39,7 +39,7 @@ export default function Cart() {
           discount: 0,
         }}
       />
-      <ul className={styles.list}>
+      <ul className={styles.list} aria-label='Cart list'>
         {cart.map((item) => (
           <CartItem product={productList.find((prod) => prod.id === item.id)} />
         ))}
