@@ -9,6 +9,8 @@ describe('Cart Integration', () => {
   let shopLink;
   let cartLink;
   let productCards;
+  const taxRate = 1.08875;
+  const shippingRate = 5.99;
 
   beforeEach(async () => {
     user = userEvent.setup();
@@ -99,17 +101,62 @@ describe('Cart Integration', () => {
         /^\$.*/,
       ).textContent;
       sumTotal += Number(price.substring(1).trim());
-      console.log('sumTotal = ' + sumTotal);
       products.splice(randomIndex, 1);
     }
 
     await user.click(cartLink);
     const cartTotal = screen
-      .getByText(/total/)
+      .getByText(/^total/i)
       .nextElementSibling.textContent.substring(1)
       .trim();
-    console.log('cartTotal = ' + cartTotal);
 
-    expect(cartTotal).toEqual(ensureTwoDecimalPlaces(sumTotal));
+    expect(cartTotal).toEqual(
+      ensureTwoDecimalPlaces(sumTotal * taxRate + shippingRate),
+    );
+  });
+
+  it('total price updates after removing item', async () => {
+    let sumTotal = 0;
+    const productOne = productCards[0];
+    const addToCartBtn = within(productOne).getByRole('button', {
+      name: /add to cart/i,
+    });
+
+    //get price within product list
+    const price = within(productOne).getByText(/^\$.*/).textContent;
+    await user.click(addToCartBtn);
+    sumTotal += Number(price.substring(1));
+
+    const incrementBtn = within(productOne).getByRole('button', {
+      name: /increment quantity/i,
+    });
+
+    for (let count = 0; count < 4; count++) {
+      await user.click(incrementBtn);
+      sumTotal += Number(price.substring(1));
+    }
+
+    await user.click(cartLink);
+    const oldCartTotal = screen
+      .getByText(/^total/i)
+      .nextElementSibling.textContent.substring(1);
+    console.log('old cart total = ' + oldCartTotal);
+
+    const decrementBtn = screen.getByRole('button', {
+      name: /decrement quantity/i,
+    });
+    await user.click(decrementBtn);
+
+    const newCartTotal = screen
+      .getByText(/^total/i)
+      .nextElementSibling.textContent.substring(1);
+    console.log('new cart total = ' + newCartTotal);
+    console.log('sum total = ' + sumTotal);
+
+    expect(newCartTotal).toEqual(
+      ensureTwoDecimalPlaces(
+        Number(oldCartTotal) - Number(price.substring(1)) * taxRate,
+      ),
+    );
   });
 });
