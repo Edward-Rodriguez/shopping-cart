@@ -159,4 +159,16 @@ describe('Cart Integration', () => {
       ),
     );
   });
+
+  it.only('cart starts empty with a total of $0.00', async () => {
+    await user.click(cartLink);
+
+    const cartTotal = screen
+      .getByText(/^total/i)
+      .nextElementSibling.textContent.substring(1);
+
+    console.log('carttotal = ' + cartTotal);
+
+    expect(cartTotal).toEqual('0.00');
+  });
 });
