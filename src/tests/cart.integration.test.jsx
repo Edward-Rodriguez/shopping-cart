@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { getByRole, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderApp } from '../tests/test-utils';
+import { ensureTwoDecimalPlaces } from '../utils/pricing';
 
 describe('Cart Integration', () => {
   let user;
@@ -77,5 +78,38 @@ describe('Cart Integration', () => {
     console.log('cart text = ' + cartLink.textContent);
     expect(cartLink.textContent).toMatch(/\(0\)$/i);
     expect(cartList.children.length).toEqual(0);
+  });
+
+  it('total price updates correctly after adding items', async () => {
+    let sumTotal = 0;
+    const products = [...productCards];
+    // add 4 random products to cart and get sumTotal
+    for (let index = 0; index < 4; index++) {
+      const randomIndex = Math.floor(Math.random() * products.length);
+      const addToCartButton = within(products[randomIndex]).getByRole(
+        'button',
+        {
+          name: /add to cart/i,
+        },
+      );
+      await user.click(addToCartButton);
+
+      //get price within product list, trim dollar sign and add to sumTotal
+      const price = within(products[randomIndex]).getByText(
+        /^\$.*/,
+      ).textContent;
+      sumTotal += Number(price.substring(1).trim());
+      console.log('sumTotal = ' + sumTotal);
+      products.splice(randomIndex, 1);
+    }
+
+    await user.click(cartLink);
+    const cartTotal = screen
+      .getByText(/total/)
+      .nextElementSibling.textContent.substring(1)
+      .trim();
+    console.log('cartTotal = ' + cartTotal);
+
+    expect(cartTotal).toEqual(ensureTwoDecimalPlaces(sumTotal));
   });
 });
